@@ -1,0 +1,21 @@
+{
+  "name": "pad-string",
+  "version": "0.1.1",
+  "description": "npm module to pad a given string to a spcified length",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "keywords": [
+    "javascript",
+    "npm",
+    "pad",
+    "string",
+    "length"
+  ],
+  "author": "Jacob Zuo <jacob.dzwo@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine": "^2.8.0"
+  }
+}
