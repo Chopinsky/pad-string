@@ -22,10 +22,10 @@ exports.padStart = function (str, targetLength) {
     return str;
   }
 
-  return getPaddingFiller(strLength - target.length) + target;
+  return getPaddingFiller(strLength - target.length, fillerString) + target;
 }
 
-exports.padEnd = function (str, targetLength) {
+exports.padEnd = function (str, targetLength, fillerString) {
   var strLength = ~~targetLength;
   if (isNaN(strLength) || strLength === 0) {
     return str;
@@ -41,10 +41,10 @@ exports.padEnd = function (str, targetLength) {
     return target;
   }
 
-  return target + getPaddingFiller(strLength - target.length);
+  return target + getPaddingFiller(strLength - target.length, fillerString);
 }
 
-exports.padBothEnds = function (str, targetLength) {
+exports.padBothEnds = function (str, targetLength, fillerString) {
   var strLength = ~~targetLength;
   if (isNaN(strLength) || strLength === 0) {
     return str;
@@ -64,20 +64,20 @@ exports.padBothEnds = function (str, targetLength) {
   var padFront = Math.ceil(extraPads / 2);
   var padTail = Math.floor(extraPads / 2);
 
-  return getPaddingFiller(padFront) + str + getPaddingFiller(padTail);
+  return getPaddingFiller(padFront, fillerString) + str + getPaddingFiller(padTail, fillerString);
 }
 
-var getPaddingFiller = function (len, padStr) {
+var getPaddingFiller = function (len, filler) {
   if (!len) {
     return '';
   }
 
-  if (!padStr) {
+  if (!filler) {
     return ' '.repeat(len);
   }
 
-  var repeat = Math.floor(padStr.length / strLen);
-  var remainder = padStr.length % strLen;
+  var repeat = Math.floor(filler.length / strLen);
+  var remainder = filler.length % strLen;
 
-  return padStr.repeat(repeat) + padStr.substring(0, remainder);
+  return filler.repeat(repeat) + filler.substring(0, remainder);
 }
