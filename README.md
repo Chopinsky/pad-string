@@ -13,7 +13,6 @@ var str2 = padEnd('test', 10, 'er')     // str2 = 'testererer'
 var str3 = padBothEnds('test', 10, 'a') // str3 = 'aaatestaaa'
 ```
 
-
 ## How to use it
 The package provides 3 functions: `padStart(targetString, targetLength[, fillerString])`, `padEnd(targetString, targetLength[, fillerString])`, and `padBothEnds(targetString, targetLength[, fillerString])`.
 

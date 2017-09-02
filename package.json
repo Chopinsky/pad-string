@@ -15,6 +15,10 @@
   ],
   "author": "Jacob Zuo <jacob.dzwo@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chopinsky/pad-string.git"
+  },
   "devDependencies": {
     "jasmine": "^2.8.0"
   }
