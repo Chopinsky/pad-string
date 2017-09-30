@@ -7,12 +7,12 @@
  */
 
 exports.padStart = function (str, targetLength) {
-  var strLength = ~~targetLength;
+  var strLength = ~~targetLength;  
   if (isNaN(strLength) || strLength === 0) {
     return str;
   }
 
-  if (!str || str.length === 0) {
+  if (str === null || str === undefined || str.length === 0) {
     return getPaddingFiller(strLength);
   }
 
@@ -31,7 +31,7 @@ exports.padEnd = function (str, targetLength, fillerString) {
     return str;
   }
 
-  if (!str) {
+  if (str === null || str === undefined || str.length === 0) {
     return getPaddingFiller(strLength);
   }
 
@@ -50,7 +50,7 @@ exports.padBothEnds = function (str, targetLength, fillerString) {
     return str;
   }
 
-  if (!str) {
+  if (str === null || str === undefined || str.length === 0) {
     return getPaddingFiller(strLength);
   }
   
