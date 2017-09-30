@@ -43,5 +43,15 @@ describe("test string paddings", function() {
       expect(pad.padStart(str2, 10)).toBe(targetString);
       expect(pad.padStart(str3, 10)).toBe(targetString);
     });
+    
+    it("pad strings", function() {
+      var str1 = 'abc', str1out = '       abc';
+      var str2 = '1234', str2out = '      1234';
+      var str3 = '!...?', str3out = '     !...?';
+      
+      expect(pad.padStart(str1, 10)).toBe(str1);
+      expect(pad.padStart(str2, 10)).toBe(str2out);
+      expect(pad.padStart(str3, 10)).toBe(str3out);
+    });
   });
 });
