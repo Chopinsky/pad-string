@@ -6,46 +6,20 @@
  * Licensed under the MIT license.
  */
 
-exports.padStart = function (str, targetLength) {
-  var strLength = ~~targetLength;  
-  if (isNaN(strLength) || strLength === 0) {
-    return str;
-  }
-
-  if (str === null || str === undefined || str.length === 0) {
-    return getPaddingFiller(strLength);
-  }
-
-  var target = (typeof str === 'string') ? str : str.toString();
-
-  if (target.length >= strLength) {
-    return str;
-  }
-
-  return getPaddingFiller(strLength - target.length, fillerString) + target;
+exports.padStart = function (str, len, filler) {
+  return paddingHelper(str, len, filler, 'start');
 }
 
-exports.padEnd = function (str, targetLength, fillerString) {
-  var strLength = ~~targetLength;
-  if (isNaN(strLength) || strLength === 0) {
-    return str;
-  }
-
-  if (str === null || str === undefined || str.length === 0) {
-    return getPaddingFiller(strLength);
-  }
-
-  var target = (typeof str === 'string') ? str : str.toString();
-
-  if (target.length >= strLength) {
-    return target;
-  }
-
-  return target + getPaddingFiller(strLength - target.length, fillerString);
+exports.padEnd = function (str, len, filler) {
+  return paddingHelper(str, len, filler, 'end');
 }
 
-exports.padBothEnds = function (str, targetLength, fillerString) {
-  var strLength = ~~targetLength;
+exports.padBothEnds = function (str, len, filler) {
+  return paddingHelper(str, len, filler, 'both');
+}
+
+var paddingHelper = function (str, len, filler, loc) {
+  var strLength = ~~len;
   if (isNaN(strLength) || strLength === 0) {
     return str;
   }
@@ -60,11 +34,25 @@ exports.padBothEnds = function (str, targetLength, fillerString) {
     return target;
   }
 
-  var extraPads = strLength - target.length;
-  var padFront = Math.ceil(extraPads / 2);
-  var padTail = Math.floor(extraPads / 2);
+  var result, fullFiller = getPaddingFiller(strLength - target.length, filler);
 
-  return getPaddingFiller(padFront, fillerString) + str + getPaddingFiller(padTail, fillerString);
+  switch (loc) {
+    case 'end':
+      result = target + fullFiller;
+      break;
+    case 'both':
+      var extraPads = strLength - target.length;
+      var padFront = Math.ceil(extraPads / 2);
+      var padTail = Math.floor(extraPads / 2);
+      result = getPaddingFiller(padFront, filler) + str + getPaddingFiller(padTail, filler);
+      break;
+    case 'start':
+    default:
+      return fullFiller + target;
+      break;
+  }
+
+  return result; 
 }
 
 var getPaddingFiller = function (len, filler) {

@@ -1,4 +1,4 @@
-describe("test string paddings", function() {
+describe("string paddings: ", function() {
   var pad = require('../../index');
 
   beforeEach(function() {
@@ -18,7 +18,7 @@ describe("test string paddings", function() {
     expect(typeof pad.padBothEnds).toEqual('function');
   });
 
-  describe("Padding Start", function() {
+  describe("Padding Start / ", function() {
     var targetString = ' '.repeat(10);
 
     beforeEach(function() {
@@ -49,7 +49,7 @@ describe("test string paddings", function() {
       var str2 = '1234', str2out = '      1234';
       var str3 = '!...?', str3out = '     !...?';
       
-      expect(pad.padStart(str1, 10)).toBe(str1);
+      expect(pad.padStart(str1, 10)).toBe(str1out);
       expect(pad.padStart(str2, 10)).toBe(str2out);
       expect(pad.padStart(str3, 10)).toBe(str3out);
     });
