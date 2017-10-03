@@ -44,10 +44,30 @@ describe("string paddings: ", function() {
       expect(pad.padStart(str3, 10)).toBe(targetString);
     });
     
-    it("pad strings", function() {
+    it("pad strings - normal", function() {
       var str1 = 'abc', str1out = '       abc';
       var str2 = '1234', str2out = '      1234';
       var str3 = '!...?', str3out = '     !...?';
+      
+      expect(pad.padStart(str1, 10)).toBe(str1out);
+      expect(pad.padStart(str2, 10)).toBe(str2out);
+      expect(pad.padStart(str3, 10)).toBe(str3out);
+    });
+
+    it("pad strings - edge cases", function() {
+      var str1 = ' 0 ', str1out = '        0 ';
+      var str2 = 'abc  ', str2out = '     abc  ';
+      var str3 = '  false  ', str3out = '   false  ';
+      
+      expect(pad.padStart(str1, 10)).toBe(str1out);
+      expect(pad.padStart(str2, 10)).toBe(str2out);
+      expect(pad.padStart(str3, 10)).toBe(str3out);
+    });
+
+    it("pad strings - other generic input types", function() {
+      var str1 = 10, str1out = '        10';
+      var str2 = 0, str2out = '         0';
+      var str3 = false, str3out = '     false';
       
       expect(pad.padStart(str1, 10)).toBe(str1out);
       expect(pad.padStart(str2, 10)).toBe(str2out);
