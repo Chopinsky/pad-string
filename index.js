@@ -34,7 +34,8 @@ var paddingHelper = function (str, len, filler, loc) {
     return target;
   }
 
-  var result, fullFiller = getPaddingFiller(strLength - target.length, filler);
+  var result;
+  var fullFiller = getPaddingFiller(strLength - target.length, filler);
 
   switch (loc) {
     case 'end':
@@ -64,8 +65,41 @@ var getPaddingFiller = function (len, filler) {
     return ' '.repeat(len);
   }
 
-  var repeat = Math.floor(filler.length / strLen);
-  var remainder = filler.length % strLen;
+  var repeat = Math.floor(len / filler.length);
+  var remainder = len % filler.length;
 
   return filler.repeat(repeat) + filler.substring(0, remainder);
+}
+
+if (!String.prototype.hasOwnProperty("padString")) {
+  Object.defineProperty(String.prototype, "padString", {
+    enumerable: false,
+    configurable: false,
+    writable: false,
+    value: function (len, filler) {
+      return paddingHelper(this, len, filler, "both");
+    }
+  });
+}
+
+if (!String.prototype.hasOwnProperty("padFront")) {
+  Object.defineProperty(String.prototype, "padFront", {
+    enumerable: false,
+    configurable: false,
+    writable: false,
+    value: function (len, filler) {
+      return paddingHelper(this, len, filler, "start");
+    }
+  });
+}
+
+if (!String.prototype.hasOwnProperty("padTail")) {
+  Object.defineProperty(String.prototype, "padTail", {
+    enumerable: false,
+    configurable: false,
+    writable: false,
+    value: function (len, filler) {
+      return paddingHelper(this, len, filler, "end");
+    }
+  });
 }
